@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Столярная мастерская Владимира</title>
+  <meta name="description" content="Столярная мастерская. Более 20 лет ручной работы по дереву.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* Reset & base */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color:#2b2b2b;background:#111;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased
+    }
+    a{color:inherit;text-decoration:none}
+
+    /* Palette: тёплые древесные тона */
+    :root{
+      --wood-dark:#2b1f16;
+      --wood-mid:#5a3f2e;
+      --accent:#3b2b21;
+      --light:#f6efe8;
+      --muted:rgba(255,255,255,0.08);
+    }
+
+    /* ===== HERO (100vh) ===== */
+    .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 20px;background:url('images/work5.jpg') center/cover no-repeat}
+
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(10,8,6,0.62),rgba(10,8,6,0.62));z-index:0}
+
+    /* Watermark logo: декоративно, поверх фонового фото, под текстом */
+    .hero::after{content:'';position:absolute;top:15%;right:8%;z-index:1;width:40vmin;max-width:480px;height:auto;pointer-events:none;opacity:0.10;background-image:url('images/logo.png');background-repeat:no-repeat;background-position:center;background-size:contain;filter:blur(1px)}
+
+    .hero-inner{position:relative;z-index:2;color:var(--light);max-width:920px;padding:40px 20px;text-align:center}
+    .hero-title{font-size:clamp(28px,5vw,48px);line-height:1.03;margin-bottom:12px;font-weight:600;text-shadow:0 8px 28px rgba(0,0,0,0.55)}
+    .hero-sub{font-size:18px;margin-bottom:20px;opacity:0.95}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;transition:transform .18s ease,background .18s ease}
+    .btn:hover{transform:translateY(-3px);background:var(--wood-dark)}
+    .hero-domain{
+      display:inline-block;
+      margin-top:12px;
+      font-size:13px;
+      color:rgba(255,255,255,0.6);
+      letter-spacing:0.4px;
+      text-decoration:none;
+      opacity:0.95;
+      transition:opacity 0.14s ease;
+    }
+    .hero-domain:hover{opacity:1;text-decoration:none}
+
+    /* ===== Section base with background image + watermark logo ===== */
+    .section{position:relative;padding:64px 20px;color:var(--light);overflow:hidden}
+    .section::after{content:'';position:absolute;right:12px;bottom:12px;width:220px;height:220px;background:url('images/logo.png') center/contain no-repeat;opacity:0.06;pointer-events:none}
+    .section::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(8,6,4,0.35),rgba(8,6,4,0.35));z-index:0}
+    .section > *{position:relative;z-index:1}
+
+    /* About (на фоне фото) */
+    .about{background:url('images/work2.jpg') center/cover no-repeat}
+    .about .wrap{max-width:880px;margin:0 auto;padding:28px;background:rgba(6,4,3,0.54);border-radius:8px}
+    .about h2{font-size:28px;margin-bottom:10px}
+    .about p{color:var(--light);font-size:16px;line-height:1.6}
+
+    /* Gallery section background */
+    .works{background:url('images/work4.jpg') center/cover no-repeat}
+    .works h2{font-size:28px;margin-bottom:18px}
+
+    /* Gallery grid */
+    .gallery{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:stretch}
+    .card{overflow:hidden;border-radius:12px;background:var(--muted);box-shadow:0 8px 24px rgba(0,0,0,0.25);transition:transform .36s cubic-bezier(.2,.8,.2,1),box-shadow .36s}
+    .card img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .45s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(0,0,0,0.4)}
+    .card:hover img{transform:scale(1.06)}
+
+    /* ===== Premium Footer (custom) ===== */
+    .footer {
+      position: relative;
+      background: url('images/work5.jpg') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 56px 20px 28px 20px;
+      margin-top: 0;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(20,16,12,0.78),rgba(20,16,12,0.82));
+      z-index: 0;
+    }
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 420px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .footer-content h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 0;
+      letter-spacing: 0.01em;
+    }
+    .footer-content p {
+      font-size: 15px;
+      opacity: 0.92;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .socials {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      align-items: center;
+      margin: 8px 0 0 0;
+    }
+    .socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px; /* hit area only, no background */
+      text-decoration: none;
+      transition: transform 0.25s ease;
+      transform-origin: center;
+    }
+    .socials svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      fill: rgba(255,255,255,0.85);
+      opacity: 0.85;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    /* Hover scaling for non-VK icons only (do not scale VK) */
+    .socials a:not(.vk):hover svg {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+
+    /* VK: visually larger — scale only. Telegram untouched. */
+    .socials a.vk svg { transform: scale(1.837); }
+    .socials a.vk:hover svg { transform: scale(2.08); }
+    .socials a.vk { margin-top: 0px; }
+
+    /* Ensure both icons align on the same vertical center (handled by .socials flex) */
+    .copy {
+      display: block;
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: 0.75;
+      letter-spacing: 0.01em;
+    }
+    .footer-email {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.18s ease;
+    }
+    .footer-email:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+    @media (max-width: 600px) {
+      .footer-content { max-width: 98vw; padding: 0 2vw; }
+      .footer { padding: 36px 6px 18px 6px; }
+      .socials a { width: 40px; height: 40px; }
+      .socials svg { width: 22px; height: 22px; }
+      .footer-content h3 { font-size: 17px; }
+      .footer-content p { font-size: 13px; }
+      .copy { font-size: 12px; }
+    }
+
+    /* ===== Responsive adjustments ===== */
+    @media (min-width:1100px){
+      .gallery{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (min-width:800px) and (max-width:1099px){
+      .gallery{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:799px){
+      .hero-logo{width:96px;top:18px}
+      .hero-inner{padding:18px}
+      .hero-title{font-size:22px}
+      .hero-sub{font-size:14px}
+      .about .wrap{padding:18px}
+      .card img{height:180px}
+    }
+    @media (max-width:420px){
+      body{font-size:15px}
+      .btn{display:block;width:100%;padding:14px;border-radius:10px;text-align:center}
+      .gallery{grid-template-columns:1fr;gap:14px}
+      .card img{height:160px}
+      .section{padding:48px 16px}
+      footer{padding:36px 16px}
+      .footer-inner{padding:18px}
+      .icon{width:46px;height:46px}
+      .footer-title{font-size:18px}
+    }
+  </style> 
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <h1 class="hero-title">Столярная мастерская Владимира</h1>
+      <p class="hero-sub">Ручная, дорогая по ощущению, аккуратная работа по дереву — индивидуальные изделия и проекты.</p>
+      <a class="btn" href="https://t.me/MBBStolyar" target="_blank" rel="noopener">Перейти в Telegram</a>
+      <a class="hero-domain" href="https://vladimir-stolyar.ru" target="_blank" rel="noopener">vladimir-stolyar.ru</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT -->
+    <section class="section about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 id="about-title">О мастере</h2>
+        <p><strong>Меня зовут Владимир.</strong></p>
+        <p>Я инженер по образованию и столяр по призванию. Более 20 лет работаю с деревом: от изящных небольших предметов до сложных индивидуальных проектов. Подхожу к каждой работе аккуратно и ответственно.</p>
+      </div>
+    </section>
+
+    <!-- WORKS / GALLERY -->
+    <section class="section works" aria-labelledby="works-title">
+      <h2 id="works-title">Примеры работ</h2>
+      <div class="gallery" role="list">
+        <article class="card" role="listitem"><img src="images/work1.jpg" alt="Работа 1"></article>
+        <article class="card" role="listitem"><img src="images/work2.jpg" alt="Работа 2"></article>
+        <article class="card" role="listitem"><img src="images/work3.jpg" alt="Работа 3"></article>
+        <article class="card" role="listitem"><img src="images/work4.jpg" alt="Работа 4"></article>
+        <article class="card" role="listitem"><img src="images/work5.jpg" alt="Работа 5"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>Столярная мастерская Владимира</h3>
+      <p>Ручная работа по дереву<br>Мебель, резьба, предметы интерьера</p>
+      <div class="socials">
+        <a href="https://t.me/MBBStolyar" target="_blank" rel="noopener" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M21.543 6.498l-3.197 15.076c-.242 1.08-.876 1.344-1.776.837l-4.908-3.62-2.368 2.28c-.262.262-.482.482-.99.482l.354-5.012 9.12-8.236c.396-.354-.086-.552-.612-.198l-11.28 7.1-4.86-1.52c-1.056-.33-1.08-1.056.22-1.56l18.84-7.26c.864-.33 1.62.198 1.332 1.56z"/>
+          </svg>
+        </a>
+
+        <a class="vk" href="https://vk.com/papamozhetserov" target="_blank" rel="noopener" aria-label="VK">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M3.545 6.558c.06-.196.326-.196.326-.196h2.51c.216 0 .37.143.43.305 0 0 .405 1.03.97 1.9.78 1.19 1.095 1.32 1.257 1.225.23-.13.18-1.02.18-1.02s-.025-.33-.11-.48c-.11-.19-.35-.245-.28-.335.06-.075.26-.1.53-.11.76-.03 1.66.005 1.66.005s.235.03.275.16c.04.13-.085.38-.085.38s-.25.67-.275 1.1c-.04.86.15 1.02.26 1.08.26.14.58-.145 1.17-.87.62-.77.865-1.25.865-1.25s.065-.145.2-.22c.13-.07.305-.05.305-.05h1.95s.29.005.34.095c.045.09-.035.275-.035.275s-.31.62-1.02 1.52c-1.47 1.86-1.63 1.74-.46 2.8 1.07.98 1.23 1.47 1.23 1.47s.02.17-.1.26c-.12.09-.35.065-.35.065h-.88c-.845 0-1.235-.125-1.7-.515-.74-.62-1.36-1.79-1.86-1.67-.07.02-.17.065-.17.315 0 .455.08.89-.175 1.08-.275.205-.79.19-1.13.19-.255 0-1.54-.015-2.92-1.215-.935-.815-1.81-2.44-1.98-2.775-.015-.035-.03-.075-.015-.11z"/>
+          </svg>
+        </a>
+      </div>
+      <a class="footer-email" href="mailto:vladimir-molozinov@yandex.ru">vladimir-molozinov@yandex.ru</a>
+      <span class="copy">© 2026 Столярная мастерская Владимира</span>
+    </div>
+  </footer>
+
+</body>
+</html>
+
