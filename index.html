@@ -2,273 +2,348 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-
-  <title>Столярная мастерская Владимира</title>
-  <meta name="description" content="Столярная мастерская. Более 20 лет ручной работы по дереву.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Столярная мастерская Владимира — ручная работа по дереву</title>
+  <meta name="description" content="Столярная мастерская Владимира. Более 20 лет ручной работы по дереву. Мебель, резьба, предметы интерьера. Индивидуальные заказы.">
 
-  <!-- favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <!-- ===== FAVICONS (все файлы лежат в /images/) ===== -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="images/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="images/favicon-256x256.png">
 
-  <style>
-    /* Reset & base */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color:#2b2b2b;background:#111;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased
-    }
-    a{color:inherit;text-decoration:none}
+  <!-- ===== ШРИФТЫ ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
-    /* Palette: тёплые древесные тона */
-    :root{
-      --wood-dark:#2b1f16;
-      --wood-mid:#5a3f2e;
-      --accent:#3b2b21;
-      --light:#f6efe8;
-      --muted:rgba(255,255,255,0.08);
-    }
-
-    /* ===== HERO (100vh) ===== */
-    .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 20px;background:url('images/work5.jpg') center/cover no-repeat}
-
-    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(10,8,6,0.62),rgba(10,8,6,0.62));z-index:0}
-
-    /* Watermark logo: декоративно, поверх фонового фото, под текстом */
-    .hero::after{content:'';position:absolute;top:15%;right:8%;z-index:1;width:40vmin;max-width:480px;height:auto;pointer-events:none;opacity:0.10;background-image:url('images/logo.png');background-repeat:no-repeat;background-position:center;background-size:contain;filter:blur(1px)}
-
-    .hero-inner{position:relative;z-index:2;color:var(--light);max-width:920px;padding:40px 20px;text-align:center}
-    .hero-title{font-size:clamp(28px,5vw,48px);line-height:1.03;margin-bottom:12px;font-weight:600;text-shadow:0 8px 28px rgba(0,0,0,0.55)}
-    .hero-sub{font-size:18px;margin-bottom:20px;opacity:0.95}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;transition:transform .18s ease,background .18s ease}
-    .btn:hover{transform:translateY(-3px);background:var(--wood-dark)}
-    .hero-domain{
-      display:inline-block;
-      margin-top:12px;
-      font-size:13px;
-      color:rgba(255,255,255,0.6);
-      letter-spacing:0.4px;
-      text-decoration:none;
-      opacity:0.95;
-      transition:opacity 0.14s ease;
-    }
-    .hero-domain:hover{opacity:1;text-decoration:none}
-
-    /* ===== Section base with background image + watermark logo ===== */
-    .section{position:relative;padding:64px 20px;color:var(--light);overflow:hidden}
-    .section::after{content:'';position:absolute;right:12px;bottom:12px;width:220px;height:220px;background:url('images/logo.png') center/contain no-repeat;opacity:0.06;pointer-events:none}
-    .section::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(8,6,4,0.35),rgba(8,6,4,0.35));z-index:0}
-    .section > *{position:relative;z-index:1}
-
-    /* About (на фоне фото) */
-    .about{background:url('images/work2.jpg') center/cover no-repeat}
-    .about .wrap{max-width:880px;margin:0 auto;padding:28px;background:rgba(6,4,3,0.54);border-radius:8px}
-    .about h2{font-size:28px;margin-bottom:10px}
-    .about p{color:var(--light);font-size:16px;line-height:1.6}
-
-    /* Gallery section background */
-    .works{background:url('images/work4.jpg') center/cover no-repeat}
-    .works h2{font-size:28px;margin-bottom:18px}
-
-    /* Gallery grid */
-    .gallery{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:stretch}
-    .card{overflow:hidden;border-radius:12px;background:var(--muted);box-shadow:0 8px 24px rgba(0,0,0,0.25);transition:transform .36s cubic-bezier(.2,.8,.2,1),box-shadow .36s}
-    .card img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .45s ease}
-    .card:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(0,0,0,0.4)}
-    .card:hover img{transform:scale(1.06)}
-
-    /* ===== Premium Footer (custom) ===== */
-    .footer {
-      position: relative;
-      background: url('images/work5.jpg') center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 56px 20px 28px 20px;
-      margin-top: 0;
-      overflow: hidden;
-    }
-    .footer::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(20,16,12,0.78),rgba(20,16,12,0.82));
-      z-index: 0;
-    }
-    .footer-content {
-      position: relative;
-      z-index: 1;
-      max-width: 420px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-    }
-    .footer-content h3 {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 0;
-      letter-spacing: 0.01em;
-    }
-    .footer-content p {
-      font-size: 15px;
-      opacity: 0.92;
-      margin: 0;
-      line-height: 1.5;
-    }
-    .socials {
-      display: flex;
-      gap: 18px;
-      justify-content: center;
-      align-items: center;
-      margin: 8px 0 0 0;
-    }
-    .socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px; /* hit area only, no background */
-      text-decoration: none;
-      transition: transform 0.25s ease;
-      transform-origin: center;
-    }
-    .socials svg {
-      width: 28px;
-      height: 28px;
-      display: block;
-      fill: rgba(255,255,255,0.85);
-      opacity: 0.85;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-    /* Hover scaling for non-VK icons only (do not scale VK) */
-    .socials a:not(.vk):hover svg {
-      transform: scale(1.08);
-      opacity: 1;
-    }
-
-    /* VK: visually larger — scale only. Telegram untouched. */
-    .socials a.vk svg { transform: scale(1.837); }
-    .socials a.vk:hover svg { transform: scale(2.08); }
-    .socials a.vk { margin-top: 0px; }
-
-    /* Ensure both icons align on the same vertical center (handled by .socials flex) */
-    .copy {
-      display: block;
-      margin-top: 18px;
-      font-size: 13px;
-      opacity: 0.75;
-      letter-spacing: 0.01em;
-    }
-    .footer-email {
-      display: block;
-      margin-top: 10px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.9);
-      text-decoration: none;
-      opacity: 0.9;
-      transition: opacity 0.18s ease;
-    }
-    .footer-email:hover {
-      opacity: 1;
-      text-decoration: none;
-    }
-    @media (max-width: 600px) {
-      .footer-content { max-width: 98vw; padding: 0 2vw; }
-      .footer { padding: 36px 6px 18px 6px; }
-      .socials a { width: 40px; height: 40px; }
-      .socials svg { width: 22px; height: 22px; }
-      .footer-content h3 { font-size: 17px; }
-      .footer-content p { font-size: 13px; }
-      .copy { font-size: 12px; }
-    }
-
-    /* ===== Responsive adjustments ===== */
-    @media (min-width:1100px){
-      .gallery{grid-template-columns:repeat(4,1fr)}
-    }
-    @media (min-width:800px) and (max-width:1099px){
-      .gallery{grid-template-columns:repeat(3,1fr)}
-    }
-    @media (max-width:799px){
-      .hero-logo{width:96px;top:18px}
-      .hero-inner{padding:18px}
-      .hero-title{font-size:22px}
-      .hero-sub{font-size:14px}
-      .about .wrap{padding:18px}
-      .card img{height:180px}
-    }
-    @media (max-width:420px){
-      body{font-size:15px}
-      .btn{display:block;width:100%;padding:14px;border-radius:10px;text-align:center}
-      .gallery{grid-template-columns:1fr;gap:14px}
-      .card img{height:160px}
-      .section{padding:48px 16px}
-      footer{padding:36px 16px}
-      .footer-inner{padding:18px}
-      .icon{width:46px;height:46px}
-      .footer-title{font-size:18px}
-    }
-  </style> 
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero" role="banner">
-    <div class="hero-inner">
-      <h1 class="hero-title">Столярная мастерская Владимира</h1>
-      <p class="hero-sub">Ручная, дорогая по ощущению, аккуратная работа по дереву — индивидуальные изделия и проекты.</p>
-      <a class="btn" href="https://t.me/MBBStolyar" target="_blank" rel="noopener">Перейти в Telegram</a>
-      <a class="hero-domain" href="https://vladimir-stolyar.ru" target="_blank" rel="noopener">vladimir-stolyar.ru</a>
+  <!-- ============================================================
+       НАВИГАЦИЯ — фиксированная, компактная
+       ============================================================ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Главная навигация">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="На главную">
+        <img src="images/logo.png" alt="Мастерская Владимира" width="40" height="40">
+      </a>
+      <div class="nav-links">
+        <!-- МЕНЯТЬ ССЫЛКИ НАВИГАЦИИ ЗДЕСЬ -->
+        <a href="#about">О мастере</a>
+        <a href="#gallery">Работы</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#contact">Контакты</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <!-- Мобильное выпадающее меню -->
+    <div class="nav-mobile" id="navMobile" aria-hidden="true">
+      <a href="#about">О мастере</a>
+      <a href="#gallery">Работы</a>
+      <a href="#advantages">Преимущества</a>
+      <a href="#contact">Контакты</a>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO — первый экран
+       Фоновое изображение задаётся в styles.css (.hero)
+       ============================================================ -->
+  <header class="hero" id="hero" role="banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner fade-in">
+      <span class="hero-badge">Ручная работа · Более 20 лет опыта</span>
+
+      <!-- МЕНЯТЬ ЗАГОЛОВОК И ПОДЗАГОЛОВОК ЗДЕСЬ -->
+      <h1 class="hero-title">Столярная мастерская<br>Владимира</h1>
+      <p class="hero-sub">Индивидуальные изделия из натурального дерева —<br class="hide-mobile"> мебель, резьба, предметы интерьера</p>
+
+      <div class="hero-actions">
+        <!-- МЕНЯТЬ ССЫЛКУ TELEGRAM ЗДЕСЬ -->
+        <a class="btn btn-primary" href="https://t.me/MBBStolyar" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.543 6.498l-3.197 15.076c-.242 1.08-.876 1.344-1.776.837l-4.908-3.62-2.368 2.28c-.262.262-.482.482-.99.482l.354-5.012 9.12-8.236c.396-.354-.086-.552-.612-.198l-11.28 7.1-4.86-1.52c-1.056-.33-1.08-1.056.22-1.56l18.84-7.26c.864-.33 1.62.198 1.332 1.56z"/></svg>
+          Написать в Telegram
+        </a>
+        <a class="btn btn-outline" href="#gallery">Посмотреть работы</a>
+      </div>
+    </div>
+    <!-- Индикатор скролла -->
+    <div class="hero-scroll" aria-hidden="true"><span></span></div>
   </header>
 
   <main>
-    <!-- ABOUT -->
-    <section class="section about" aria-labelledby="about-title">
-      <div class="wrap">
-        <h2 id="about-title">О мастере</h2>
-        <p><strong>Меня зовут Владимир.</strong></p>
-        <p>Я инженер по образованию и столяр по призванию. Более 20 лет работаю с деревом: от изящных небольших предметов до сложных индивидуальных проектов. Подхожу к каждой работе аккуратно и ответственно.</p>
+      <!-- ============================================================
+         О МАСТЕРЕ
+         МЕНЯТЬ ТЕКСТ О МАСТЕРЕ ЗДЕСЬ
+         ============================================================ -->
+    <section class="section section-about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-grid reveal">
+          <div class="about-image-wrap">
+            <!-- МЕНЯТЬ ФОТО В СЕКЦИИ "О МАСТЕРЕ": замените src -->
+            <img src="images/work2.jpg" alt="Мастерская Владимира — процесс работы" class="about-image" loading="lazy">
+            <div class="about-image-accent" aria-hidden="true"></div>
+          </div>
+          <div class="about-text">
+            <span class="section-label">О мастере</span>
+            <h2 id="about-title" class="section-title">Более 20 лет<br>работы с деревом</h2>
+            <div class="about-divider" aria-hidden="true"></div>
+            <p><strong>Меня зовут Владимир.</strong> Я инженер по образованию и столяр по призванию.</p>
+            <p>Каждое изделие создаю вручную — от замысла до финишной обработки. Подхожу к работе с инженерной точностью и ремесленной душой. Использую только натуральные материалы и проверенные техники.</p>
+            <p>Мне важно, чтобы каждый предмет был не просто функциональным, а нёс в себе тепло ручного труда и служил долгие годы.</p>
+          </div>
+        </div>
+      </div>
+    </section>  
+      <!-- ============================================================
+         ГАЛЕРЕЯ РАБОТ
+         КАК ДОБАВИТЬ НОВОЕ ФОТО:
+         1. Положите файл в /images/ (например work6.jpg)
+         2. Скопируйте блок .gallery-item ниже
+         3. Замените src и data-src на images/work6.jpg
+         4. Обновите alt-текст
+         ============================================================ -->
+    <section class="section section-gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Портфолио</span>
+          <h2 id="gallery-title" class="section-title">Примеры работ</h2>
+        </div>
+
+        <div class="gallery-grid reveal" role="list">
+
+          <div class="gallery-item span-tall" role="listitem">
+            <img src="images/work1.jpg" alt="Изделие ручной работы из дерева" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="gallery-zoom" aria-label="Увеличить изображение" data-src="images/work1.jpg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="gallery-item" role="listitem">
+            <img src="images/work2.jpg" alt="Столярное изделие ручной работы" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="gallery-zoom" aria-label="Увеличить изображение" data-src="images/work2.jpg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="gallery-item" role="listitem">
+            <img src="images/work3.jpg" alt="Работа из натурального дерева" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="gallery-zoom" aria-label="Увеличить изображение" data-src="images/work3.jpg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="gallery-item span-wide" role="listitem">
+            <img src="images/work4.jpg" alt="Деревянное изделие для интерьера" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="gallery-zoom" aria-label="Увеличить изображение" data-src="images/work4.jpg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="gallery-item" role="listitem">
+            <img src="images/work5.jpg" alt="Изделие из массива дерева" loading="lazy">
+            <div class="gallery-overlay">
+              <button class="gallery-zoom" aria-label="Увеличить изображение" data-src="images/work5.jpg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+        <!-- ============================================================
+         ПРЕИМУЩЕСТВА (4 пункта)
+         МЕНЯТЬ ТЕКСТЫ ПРЕИМУЩЕСТВ ЗДЕСЬ
+         ============================================================ -->
+    <section class="section section-advantages" id="advantages" aria-labelledby="adv-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Почему выбирают</span>
+          <h2 id="adv-title" class="section-title">Преимущества</h2>
+        </div>
+        <div class="adv-grid reveal">
+
+          <div class="adv-card">
+            <div class="adv-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Опыт более 20 лет</h3>
+            <p>Работаю с деревом с 2003 года. За спиной — сотни выполненных проектов разной сложности.</p>
+          </div>
+
+          <div class="adv-card">
+            <div class="adv-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Индивидуальный подход</h3>
+            <p>Каждый проект уникален. Работаю по вашим идеям и эскизам или помогаю с решением с нуля.</p>
+          </div>
+
+          <div class="adv-card">
+            <div class="adv-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Ручная работа</h3>
+            <p>Каждая деталь обработана вручную. Только натуральные материалы и проверенные техники.</p>
+          </div>
+
+          <div class="adv-card">
+            <div class="adv-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Надёжность</h3>
+            <p>Ответственный подход к каждому заказу. Изделия, которые служат десятилетиями.</p>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <!-- WORKS / GALLERY -->
-    <section class="section works" aria-labelledby="works-title">
-      <h2 id="works-title">Примеры работ</h2>
-      <div class="gallery" role="list">
-        <article class="card" role="listitem"><img src="images/work1.jpg" alt="Работа 1"></article>
-        <article class="card" role="listitem"><img src="images/work2.jpg" alt="Работа 2"></article>
-        <article class="card" role="listitem"><img src="images/work3.jpg" alt="Работа 3"></article>
-        <article class="card" role="listitem"><img src="images/work4.jpg" alt="Работа 4"></article>
-        <article class="card" role="listitem"><img src="images/work5.jpg" alt="Работа 5"></article>
+
+    <!-- ============================================================
+         CTA — короткий призыв перед футером
+         ============================================================ -->
+    <section class="section section-cta" aria-label="Призыв к действию">
+      <div class="cta-bg" aria-hidden="true"></div>
+      <div class="container cta-inner reveal">
+        <h2 class="cta-title">Обсудим ваш проект?</h2>
+        <p class="cta-text">Расскажите о вашей идее — подберу решение и рассчитаю стоимость.</p>
+        <a class="btn btn-primary btn-lg" href="https://t.me/MBBStolyar" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.543 6.498l-3.197 15.076c-.242 1.08-.876 1.344-1.776.837l-4.908-3.62-2.368 2.28c-.262.262-.482.482-.99.482l.354-5.012 9.12-8.236c.396-.354-.086-.552-.612-.198l-11.28 7.1-4.86-1.52c-1.056-.33-1.08-1.056.22-1.56l18.84-7.26c.864-.33 1.62.198 1.332 1.56z"/></svg>
+          Написать в Telegram
+        </a>
       </div>
     </section>
+
   </main>
+    <!-- ============================================================
+       FOOTER / КОНТАКТЫ
+       МЕНЯТЬ КОНТАКТЫ ЗДЕСЬ:
+       - Telegram: href в первой ссылке
+       - VK: href во второй ссылке
+       - MAX: href в третьей ссылке
+       - Телефон: в #phoneNumber (отображение) и в .phone-call href (для звонка)
+       - Email: в .footer-email href и текст
+       ============================================================ -->
+  <footer class="footer" id="contact" role="contentinfo">
+    <div class="footer-bg" aria-hidden="true"></div>
+    <div class="container footer-content">
 
-  <footer class="footer">
-    <div class="footer-content">
-      <h3>Столярная мастерская Владимира</h3>
-      <p>Ручная работа по дереву<br>Мебель, резьба, предметы интерьера</p>
-      <div class="socials">
-        <a href="https://t.me/MBBStolyar" target="_blank" rel="noopener" aria-label="Telegram">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M21.543 6.498l-3.197 15.076c-.242 1.08-.876 1.344-1.776.837l-4.908-3.62-2.368 2.28c-.262.262-.482.482-.99.482l.354-5.012 9.12-8.236c.396-.354-.086-.552-.612-.198l-11.28 7.1-4.86-1.52c-1.056-.33-1.08-1.056.22-1.56l18.84-7.26c.864-.33 1.62.198 1.332 1.56z"/>
-          </svg>
-        </a>
-
-        <a class="vk" href="https://vk.com/vladimirmbb" target="_blank" rel="noopener" aria-label="VK">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-            <path d="M3.545 6.558c.06-.196.326-.196.326-.196h2.51c.216 0 .37.143.43.305 0 0 .405 1.03.97 1.9.78 1.19 1.095 1.32 1.257 1.225.23-.13.18-1.02.18-1.02s-.025-.33-.11-.48c-.11-.19-.35-.245-.28-.335.06-.075.26-.1.53-.11.76-.03 1.66.005 1.66.005s.235.03.275.16c.04.13-.085.38-.085.38s-.25.67-.275 1.1c-.04.86.15 1.02.26 1.08.26.14.58-.145 1.17-.87.62-.77.865-1.25.865-1.25s.065-.145.2-.22c.13-.07.305-.05.305-.05h1.95s.29.005.34.095c.045.09-.035.275-.035.275s-.31.62-1.02 1.52c-1.47 1.86-1.63 1.74-.46 2.8 1.07.98 1.23 1.47 1.23 1.47s.02.17-.1.26c-.12.09-.35.065-.35.065h-.88c-.845 0-1.235-.125-1.7-.515-.74-.62-1.36-1.79-1.86-1.67-.07.02-.17.065-.17.315 0 .455.08.89-.175 1.08-.275.205-.79.19-1.13.19-.255 0-1.54-.015-2.92-1.215-.935-.815-1.81-2.44-1.98-2.775-.015-.035-.03-.075-.015-.11z"/>
-          </svg>
-        </a>
+      <div class="footer-top">
+        <img src="images/logo.png" alt="" class="footer-logo" width="56" height="56" aria-hidden="true">
+        <h3 class="footer-title">Столярная мастерская Владимира</h3>
+        <p class="footer-desc">Ручная работа по дереву — мебель, резьба, предметы интерьера</p>
       </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <!-- Контакты: единый ряд -->
+      <div class="footer-contacts">
+
+        <!-- Telegram -->
+        <a href="https://t.me/MBBStolyar" target="_blank" rel="noopener" class="contact-link" aria-label="Написать в Telegram">
+          <span class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.543 6.498l-3.197 15.076c-.242 1.08-.876 1.344-1.776.837l-4.908-3.62-2.368 2.28c-.262.262-.482.482-.99.482l.354-5.012 9.12-8.236c.396-.354-.086-.552-.612-.198l-11.28 7.1-4.86-1.52c-1.056-.33-1.08-1.056.22-1.56l18.84-7.26c.864-.33 1.62.198 1.332 1.56z"/></svg>
+          </span>
+          <span class="contact-label">Telegram</span>
+        </a>
+
+        <!-- VK -->
+        <a href="https://vk.com/vladimirmbb" target="_blank" rel="noopener" class="contact-link" aria-label="Профиль ВКонтакте">
+          <span class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.547 7.002h-2.46c-.215 0-.43.14-.537.36 0 0-1.09 2.16-2.64 3.56-.277.25-.403.33-.554.33-.107 0-.265-.08-.265-.36V7.362c0-.215-.02-.36-.38-.36h-2.67c-.26 0-.417.19-.417.37 0 .39.582.48.642 1.57v2.37c0 .52-.094.614-.298.614-.554 0-1.9-2.04-2.7-4.37-.157-.454-.314-.564-.536-.564H6.27c-.242 0-.29.14-.29.36 0 .43.554 2.56 2.578 5.37C9.898 14.76 11.68 15.8 13.3 15.8c.97 0 1.09-.22 1.09-.6v-1.64c0-.28.06-.34.253-.34.143 0 .39.07.965.62.657.66 1.167 1.52 1.167 1.52.08.146.27.44.542.44h2.293c.242 0 .363-.146.294-.434-.076-.287-.953-1.522-1.86-2.43-.224-.264-.335-.396-.193-.634.057-.1.213-.32.592-.752.96-1.09 1.82-2.4 1.95-2.88.07-.22-.05-.36-.29-.36z"/></svg>
+          </span>
+          <span class="contact-label">VK</span>
+        </a>
+
+        <!-- MAX (кастомный бейдж) -->
+        <a href="https://max.ru/join/03qmqc2cKsITFF_2Ibfzd-rstXWb9_TEBtheHgrb-Is" target="_blank" rel="noopener" class="contact-link" aria-label="Написать в MAX">
+          <span class="contact-icon contact-icon-max" aria-hidden="true">
+            <span class="max-badge">MAX</span>
+          </span>
+          <span class="contact-label">MAX</span>
+        </a>
+
+        <!-- Телефон: popover (НЕ звонит при клике) -->
+        <button class="contact-link contact-phone-btn" id="phoneBtn" aria-label="Показать номер телефона" aria-expanded="false" aria-controls="phonePopover" type="button">
+          <span class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="contact-label">Телефон</span>
+        </button>
+
+        <!--
+          PHONE POPOVER
+          Появляется при клике на иконку телефона.
+          МЕНЯТЬ НОМЕР ТЕЛЕФОНА:
+          - отображение: внутри #phoneNumber
+          - для копирования: в script.js, переменная phoneRaw
+          - для звонка: href в .phone-call
+        -->
+        <div class="phone-popover" id="phonePopover" role="dialog" aria-label="Номер телефона">
+          <div class="phone-popover-arrow" aria-hidden="true"></div>
+          <div class="phone-popover-inner">
+            <span class="phone-number" id="phoneNumber">+7 930 390-29-23</span>
+            <div class="phone-popover-actions">
+              <button class="phone-action" id="phoneCopy" type="button" aria-label="Скопировать номер">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="phoneCopyText">Скопировать</span>
+              </button>
+              <a class="phone-action phone-call" href="tel:+79303902923" aria-label="Позвонить">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Позвонить
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- МЕНЯТЬ EMAIL ЗДЕСЬ -->
       <a class="footer-email" href="mailto:vladimir-molozinov@yandex.ru">vladimir-molozinov@yandex.ru</a>
-      <span class="copy">© 2026 Столярная мастерская Владимира</span>
+
+      <div class="footer-bottom">
+        <span class="copy">&copy; 2025 Столярная мастерская Владимира</span>
+      </div>
     </div>
   </footer>
 
+
+  <!-- ============================================================
+       LIGHTBOX — полноэкранный просмотр фото галереи
+       Работает автоматически, JS подхватывает data-src из кнопок
+       ============================================================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Просмотр изображения" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть" type="button">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Предыдущее" type="button">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Следующее" type="button">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Увеличенное изображение">
+  </div>
+
+
+  <script src="script.js"></script>
 </body>
 </html>
 
